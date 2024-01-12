@@ -11,7 +11,7 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 @Getter
@@ -23,8 +23,8 @@ public class Pedido {
     @NotNull(message = "{campo.notnull}")
     private BigInteger numeroControle;
 
-    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS")
-    private LocalDateTime dataCadastro;
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private LocalDate dataCadastro;
 
     @Valid
     @NotNull(message = "{campo.notnull}")
@@ -38,7 +38,7 @@ public class Pedido {
 
     public void changeDataCadastro() {
         if(this.getDataCadastro() == null) {
-            this.setDataCadastro(LocalDateTime.now());
+            this.setDataCadastro(LocalDate.now());
         }
     }
 

@@ -5,7 +5,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.math.BigInteger;
+import java.time.LocalDate;
+import java.util.List;
 
 @Repository
 public interface PedidoRepository extends JpaRepository<PedidoEntity, BigInteger> {
+
+    List<PedidoEntity> findByDataCadastro(LocalDate dataCadastro);
 }

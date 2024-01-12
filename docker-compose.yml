@@ -1,5 +1,20 @@
 version: "3.7"
 services:
+  db:
+    image: mysql:8.0
+    cap_add:
+      - SYS_NICE
+    restart: always
+    environment:
+      - MYSQL_DATABASE=gestao_pedidos
+      - MYSQL_ROOT_PASSWORD=toor
+    ports:
+      - '3306:3306'
+    volumes:
+      - db:/var/lib/mysql
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - common-network
   container:
     container_name: api-pedidos-eicon
     build:
@@ -7,3 +22,20 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8080:8080"
+    depends_on:
+      - db
+    restart: always
+    environment:
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_USER: root
+      DB_PASSWORD: toor
+      DB_NAME: gestao_pedidos
+    networks:
+      - common-network
+volumes:
+  db:
+    driver: local
+networks:
+  common-network:
+    driver: bridge

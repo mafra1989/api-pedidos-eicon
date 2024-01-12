@@ -1,6 +1,9 @@
 package br.com.eicon.infrastructure.adapters.input.rest.controllers;
 
+import br.com.eicon.application.pedido.BuscarPedidoUseCase;
+import br.com.eicon.application.pedido.ListarPedidosUseCase;
 import br.com.eicon.application.pedido.CadastrarPedidoUseCase;
+import br.com.eicon.application.pedido.FiltrarPedidosUseCase;
 import br.com.eicon.infrastructure.adapters.input.rest.dtos.CadastroPedidoDTO;
 import br.com.eicon.infrastructure.adapters.input.rest.exception.enumarator.MensagenInfraestruturaEnum;
 import br.com.six2six.fixturefactory.Fixture;
@@ -32,7 +35,16 @@ public class PedidoControllerTest {
     private PedidoController pedidoController;
 
     @Mock
+    private ListarPedidosUseCase listarPedidosUseCase;
+
+    @Mock
     private CadastrarPedidoUseCase cadastrarPedidoUseCase;
+
+    @Mock
+    private BuscarPedidoUseCase buscarPedidoUseCase;
+
+    @Mock
+    private FiltrarPedidosUseCase filtrarPedidosUseCase;
 
     private ObjectMapper objectMapper = new ObjectMapper();
 
@@ -55,7 +67,7 @@ public class PedidoControllerTest {
 
         // then
         mockMvc.perform(MockMvcRequestBuilders
-                        .post("/pedido/json")
+                        .post("/v1/pedidos")
                         .content(objectMapper.writeValueAsString(inputMock))
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.parseMediaType("application/json;charset=UTF-8")))

@@ -19,7 +19,7 @@ Esse projeto é uma API REST para recepcionar pedidos dos clientes no formato xm
 * Mockito Framework
 * Fixture Factory
 * Docker e Docker Compose
-* Banco de Dados H2
+* Banco de MySQL 8.0
 
 ## Executando o Projeto
 

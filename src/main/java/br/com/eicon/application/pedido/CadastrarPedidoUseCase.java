@@ -1,6 +1,6 @@
 package br.com.eicon.application.pedido;
 
-import br.com.eicon.application.UseCase;
+import br.com.eicon.application.UnitUseCase;
 import br.com.eicon.application.mapper.CadastroPedidoInputMapper;
 import br.com.eicon.domain.enumerators.MensagensNegociosEnum;
 import br.com.eicon.domain.exception.NumeroControleExistenteException;
@@ -17,7 +17,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-public class CadastrarPedidoUseCase extends UseCase<CadastrarPedidoUseCase.Input> {
+public class CadastrarPedidoUseCase extends UnitUseCase<CadastrarPedidoUseCase.Input> {
 
     private final CadastroPedidoInputMapper mapper;
     private final ValidacoesInPort validacoesInPort;

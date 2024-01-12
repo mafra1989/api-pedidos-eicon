@@ -8,6 +8,8 @@ import br.com.eicon.infrastructure.adapters.output.persistence.repository.Pedido
 import org.springframework.stereotype.Component;
 
 import java.math.BigInteger;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -26,6 +28,18 @@ public class PedidoPersistenceAdapter implements PedidoPersistenceOutPort {
     }
 
     @Override
+    public List<Pedido> listarPedidos() {
+        List<Pedido> pedidos = new ArrayList<>();
+
+        List<PedidoEntity> entities = pedidoRepository.findAll();
+        pedidos = entities.stream().map(entity -> {
+            return outputMapper.toDomain(entity);
+        }).collect(Collectors.toList());
+
+        return pedidos;
+    }
+
+    @Override
     public Pedido buscarPedido(BigInteger numeroControle) {
         PedidoEntity entity = pedidoRepository.findById(numeroControle).orElse(null);
         if(entity != null) {
@@ -41,5 +55,17 @@ public class PedidoPersistenceAdapter implements PedidoPersistenceOutPort {
         }).collect(Collectors.toList());
 
         pedidoRepository.saveAll(pedidosEntity);
+    }
+
+    @Override
+    public List<Pedido> filtrarPedidos(LocalDate dataCadastro) {
+        List<Pedido> pedidos = new ArrayList<>();
+
+        List<PedidoEntity> entities = pedidoRepository.findByDataCadastro(dataCadastro);
+        pedidos = entities.stream().map(entity -> {
+            return outputMapper.toDomain(entity);
+        }).collect(Collectors.toList());
+
+        return pedidos;
     }
 }

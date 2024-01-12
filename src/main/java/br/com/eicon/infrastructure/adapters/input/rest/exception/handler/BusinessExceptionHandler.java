@@ -1,6 +1,7 @@
 package br.com.eicon.infrastructure.adapters.input.rest.exception.handler;
 
 import br.com.eicon.domain.exception.NumeroControleExistenteException;
+import br.com.eicon.domain.exception.PedidoNaoEncontradoException;
 import br.com.eicon.domain.exception.ValidationException;
 import br.com.eicon.infrastructure.adapters.input.rest.exception.enumarator.MensagenInfraestruturaEnum;
 import br.com.eicon.infrastructure.adapters.input.rest.exception.erro.ApiErroResponse;
@@ -34,6 +35,19 @@ public class BusinessExceptionHandler {
     public ApiErroResponse handleNumeroControleExistenteException(NumeroControleExistenteException ex){
 
         ApiErroResponse error = new ApiErroResponse(MensagenInfraestruturaEnum.FALHA_PROCESSAMENTO.getMensagem(), HttpStatus.BAD_REQUEST, ex);
+        var messages = ex.getErrorMessage().split("/");
+        for (String message: messages) {
+            error.addErroNegocio(ex.getErrorCode(), message);
+        }
+
+        return error;
+    }
+
+    @ExceptionHandler(PedidoNaoEncontradoException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ApiErroResponse handlePedidoNaoEncontradoException(PedidoNaoEncontradoException ex){
+
+        ApiErroResponse error = new ApiErroResponse(MensagenInfraestruturaEnum.FALHA_PROCESSAMENTO.getMensagem(), HttpStatus.NOT_FOUND, ex);
         var messages = ex.getErrorMessage().split("/");
         for (String message: messages) {
             error.addErroNegocio(ex.getErrorCode(), message);

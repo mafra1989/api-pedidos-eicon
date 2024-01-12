@@ -1,7 +1,10 @@
 package br.com.eicon.infrastructure.configurations;
 
 import br.com.eicon.application.mapper.CadastroPedidoInputMapper;
+import br.com.eicon.application.pedido.BuscarPedidoUseCase;
+import br.com.eicon.application.pedido.ListarPedidosUseCase;
 import br.com.eicon.application.pedido.CadastrarPedidoUseCase;
+import br.com.eicon.application.pedido.FiltrarPedidosUseCase;
 import br.com.eicon.domain.ports.input.ValidacoesInPort;
 import br.com.eicon.domain.ports.output.PedidoPersistenceOutPort;
 import org.springframework.context.annotation.Bean;
@@ -25,7 +28,22 @@ public class UseCaseConfig {
     }
 
     @Bean
+    public ListarPedidosUseCase buscarPedidosUseCase() {
+        return new ListarPedidosUseCase(pedidoPersistenceOutPort);
+    }
+
+    @Bean
     public CadastrarPedidoUseCase cadastrarPedidoUseCase() {
         return new CadastrarPedidoUseCase(pedidoInputMapper, validacoesInPort, pedidoPersistenceOutPort);
+    }
+
+    @Bean
+    public BuscarPedidoUseCase buscarPedidoUseCase() {
+        return new BuscarPedidoUseCase(pedidoPersistenceOutPort);
+    }
+
+    @Bean
+    public FiltrarPedidosUseCase filtrarPedidosUseCase() {
+        return new FiltrarPedidosUseCase(pedidoPersistenceOutPort);
     }
 }

@@ -8,7 +8,7 @@ import br.com.six2six.fixturefactory.loader.TemplateLoader;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public class PedidoEntityFixture implements TemplateLoader {
 
@@ -22,7 +22,7 @@ public class PedidoEntityFixture implements TemplateLoader {
     private void dtoValido() {
         Fixture.of(PedidoEntity.class).addTemplate(VALIDO, new Rule() {{
             add("numeroControle", BigInteger.valueOf(1));
-            add("dataCadastro", LocalDateTime.parse("2022-11-11T15:37:56.194"));
+            add("dataCadastro", LocalDate.parse("2022-11-11"));
             add("produtos", has(1).of(ProdutoEntity.class, VALIDO));
             add("valorTotal", BigDecimal.valueOf(83));
             add("codigoCliente", BigInteger.valueOf(1));

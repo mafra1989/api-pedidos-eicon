@@ -12,7 +12,7 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 @Getter
@@ -26,7 +26,7 @@ public class PedidoEntity {
     @Id
     private BigInteger numeroControle;
 
-    private LocalDateTime dataCadastro;
+    private LocalDate dataCadastro;
 
     @OneToMany(cascade = CascadeType.ALL)
     private List<ProdutoEntity> produtos;

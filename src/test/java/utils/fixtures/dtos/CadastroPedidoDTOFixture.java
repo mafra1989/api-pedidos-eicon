@@ -27,7 +27,7 @@ public class CadastroPedidoDTOFixture implements TemplateLoader {
         }});
         Fixture.of(PedidoDTO.class).addTemplate(VALIDO, new Rule() {{
             add("numeroControle", BigInteger.valueOf(1));
-            add("dataCadastro", "2022-11-11T15:37:56.194");
+            add("dataCadastro", "2022-11-11");
             add("produtos", has(1).of(ProdutoDTO.class, VALIDO));
             add("codigoCliente", BigInteger.valueOf(1));
         }});
@@ -44,7 +44,7 @@ public class CadastroPedidoDTOFixture implements TemplateLoader {
         }});
         Fixture.of(PedidoDTO.class).addTemplate(VALIDO_COM_MAIS_DE_10_PEDIDOS, new Rule() {{
             add("numeroControle", BigInteger.valueOf(1));
-            add("dataCadastro", "2022-11-11T15:37:56.194");
+            add("dataCadastro", "2022-11-11");
             add("produtos", has(1).of(ProdutoDTO.class, VALIDO_COM_MAIS_DE_10_PEDIDOS));
             add("codigoCliente", BigInteger.valueOf(1));
         }});
