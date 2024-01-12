@@ -55,7 +55,7 @@ Para visualizar a documentação Swagger, acesse: http://localhost:8080/swagger-
 * Cadastro de pedido com JSON
 ```
 curl --location 'http://localhost:8080/v1/pedidos' \
---header 'Content-Type: application/xml' \
+--header 'Content-Type: application/json' \
 --data '{
     "pedidos": [
         {
