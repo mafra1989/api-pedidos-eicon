@@ -1,0 +1,9 @@
+version: "3.7"
+services:
+  container:
+    container_name: api-pedidos-eicon
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
