@@ -50,7 +50,7 @@ docker ps
 ```
 Para visualizar a documentação Swagger, acesse: http://localhost:8080/swagger-ui.html
 
-### CURL para teste via postman
+## CURL para teste via postman
 
 * Cadastro de pedido com JSON
 ```
