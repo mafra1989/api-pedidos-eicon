@@ -1,4 +1,4 @@
-# RENNER API - Orquestrador de Vendas
+# EICON API - Gestor de Pedidos
 
 ## Visão Geral
 Esse projeto é uma API REST para recepcionar pedidos dos clientes no formato xml e json com 6 campos:
